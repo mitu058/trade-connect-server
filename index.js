@@ -53,6 +53,14 @@ app.delete('/job/:id',async(req,res)=>{
   const result = await jobsCollection.deleteOne(query);
   res.send(result);
 })
+
+// get a single job data by id from db
+app.get('/job/:id',async(req,res){
+  const id = req.params.id
+  const query = {_id : new ObjectId(id)}
+  const result = await jobsCollection.findOne(query);
+  res.send(result);
+})
     
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
